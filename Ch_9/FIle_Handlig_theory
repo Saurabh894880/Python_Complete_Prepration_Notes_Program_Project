@@ -1,0 +1,236 @@
+
+ 📘 File Handling in Python – Complete Notes
+
+---
+
+ 🔹 1. What is File Handling?
+
+ Definition: 
+ File handling allows Python programs to store, retrieve, and modify data permanently in files.
+ Unlike variables (temporary, RAM), files store data in secondary storage (hard disk).
+ File handling is essential for data persistence.
+
+---
+
+ 🔹 2. Types of Files
+
+1. Text Files (`.txt`)
+
+    Store characters as text (ASCII/Unicode).
+    Example: `notes.txt`, `data.csv`.
+
+2. Binary Files (`.bin`, `.jpg`, `.mp4`, `.exe`)
+
+    Store raw bytes.
+    Example: images, audio, video, program files.
+
+---
+
+ 🔹 3. Basic Steps in File Handling
+
+1. Open the file → using `open()` with proper mode.
+2. Perform Operations → read, write, append, update.
+3. Close the file → using `close()`.
+
+---
+
+ 🔹 4. Opening a File
+
+ Syntax:
+
+  ```python
+  f = open("filename", "mode")
+  ```
+ `filename` → name of file.
+ `mode` → specifies purpose (read/write/append).
+
+---
+
+ 🔹 5. File Modes in Python
+
+| Mode    | Type   | Description                                |
+| ------- | ------ | ------------------------------------------ |
+| `"r"`   | Text   | Read (default), error if file not found.   |
+| `"w"`   | Text   | Write, creates new or overwrites existing. |
+| `"a"`   | Text   | Append, adds new data at end.              |
+| `"x"`   | Text   | Exclusive create, error if file exists.    |
+| `"rb"`  | Binary | Read in binary.                            |
+| `"wb"`  | Binary | Write in binary.                           |
+| `"ab"`  | Binary | Append in binary.                          |
+| `"r+"`  | Text   | Read + Write, file must exist.             |
+| `"w+"`  | Text   | Write + Read, creates/overwrites.          |
+| `"a+"`  | Text   | Append + Read, creates if not exists.      |
+| `"rb+"` | Binary | Read + Write in binary.                    |
+| `"wb+"` | Binary | Write + Read in binary.                    |
+| `"ab+"` | Binary | Append + Read in binary.                   |
+
+---
+
+ 🔹 6. Reading from a File
+
+ Methods:
+
+  ```python
+  f.read()         entire file
+  f.read(10)       first 10 characters
+  f.readline()     one line
+  f.readlines()    all lines as list
+  ```
+ Example:
+
+  ```python
+  f = open("data.txt", "r")
+  print(f.read())
+  f.close()
+  ```
+
+---
+
+ 🔹 7. Writing to a File
+
+ Methods:
+
+  ```python
+  f.write("Hello World")
+  f.writelines(["Line1\n", "Line2\n"])
+  ```
+ `"w"` overwrites, `"a"` appends.
+ Example:
+
+  ```python
+  f = open("data.txt", "w")
+  f.write("This is a new file.")
+  f.close()
+  ```
+
+---
+
+ 🔹 8. Appending to a File
+
+```python
+f = open("data.txt", "a")
+f.write("\nAdding new line.")
+f.close()
+```
+
+---
+
+ 🔹 9. Closing a File
+
+ Ensures all data is saved and resources are freed.
+
+```python
+f.close()
+```
+
+---
+
+ 🔹 10. File Pointer
+
+ Every file has a cursor (pointer) indicating current position.
+
+ `tell()` → returns current position of file pointer.
+
+ `seek(offset, from_where)` → moves file pointer.
+
+   `from_where = 0` → beginning
+   `from_where = 1` → current position
+   `from_where = 2` → end
+
+Example:
+
+```python
+f = open("data.txt", "r")
+print(f.tell())        position
+f.seek(0)              move to start
+print(f.read(5))       read first 5 chars
+f.close()
+```
+
+---
+
+ 🔹 11. With Statement (Context Manager)
+
+ Automatically closes file after block ends.
+
+```python
+with open("data.txt", "r") as f:
+    print(f.read())
+ file auto closed
+```
+
+---
+
+ 🔹 12. File Handling Functions
+
+ `open()` → open a file.
+ `close()` → close a file.
+ `read()`, `readline()`, `readlines()` → reading.
+ `write()`, `writelines()` → writing.
+ `tell()` → current pointer position.
+ `seek()` → change pointer position.
+
+---
+
+ 🔹 13. Working with Binary Files
+
+```python
+ Writing binary
+with open("image.jpg", "rb") as f1:
+    data = f1.read()
+with open("copy.jpg", "wb") as f2:
+    f2.write(data)
+```
+
+---
+
+ 🔹 14. File/Directory Handling with OS Module
+
+```python
+import os
+
+os.rename("old.txt", "new.txt")    rename file
+os.remove("data.txt")              delete file
+os.mkdir("new_folder")             create directory
+os.rmdir("new_folder")             remove empty directory
+print(os.getcwd())                 get current directory
+os.chdir("C:/Users/")              change directory
+```
+
+---
+
+ 🔹 15. Error Handling in File Operations
+
+Use `try-except`:
+
+```python
+try:
+    f = open("nofile.txt", "r")
+    print(f.read())
+except FileNotFoundError:
+    print("File not found!")
+```
+
+---
+
+ 🔹 16. Practical Applications
+
+ Log files
+ Saving user data
+ Configuration files
+ Report generation
+ Storing student/employee records
+
+---
+
+ ✅ Summary
+
+ File handling enables persistent storage.
+ Modes: `r, w, a, x` (+ binary & update modes).
+ Operations: create, open, read, write, append, close, delete.
+ Functions: `read(), write(), seek(), tell()`.
+ Use `with` for automatic closing.
+ `os` module helps in managing files/directories.
+
+---
+
